@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Miembro.belongsTo(models.equipos, {
-        foreignKey: 'idEquipo',
-        target_key: 'id'
+        foreignKey: 'id',
+        target_key: 'idEquipo'
       })
     }
   }
