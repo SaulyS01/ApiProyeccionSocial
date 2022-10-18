@@ -26,15 +26,21 @@ module.exports = {
     },
     async updateEquipo(req, res) {
         try {
-            const data = await Equipo.find({
-                id: req.params.id,
+            const data = await Equipo.findOne({
+                where: {
+                    id: req.params.id
+                }
             })
             if (data) {
-                const updatedEquipo = await Equipo.update({
+                const updatedEquipo = await data.update({
                     equipo: req.body.equipo,
                     estado: req.body.estado,
                 })
-                res.status(201).send(updatedEquipo)
+                res.status(201).send({
+                    'estado': true,
+                    'msg': "Equipo actualizado!",
+                    'equipo': updatedEquipo
+                })
             } else {
                 res.status(404).send("Equipo no encontrado!")
             }
@@ -45,29 +51,34 @@ module.exports = {
     },
     async deleteEquipo(req, res) {
         try {
-            const data = await Equipo.find({
-                id: req.params.id,
+            const equipo = await Equipo.destroy({
+                where: { id: req.params.id }
             })
-            if (data) {
-                const updatedEquipo = await Tutorial.destroy({
-                    where: { id: id }
-                })
-                res.status(201).send(updatedEquipo)
-            }
-        } catch (error) {
+            res.status(201).send({
+                'estado': true,
+                'msg': "Equipo eliminado!",
+                'equipo': equipo
+            })
+        } catch (e) {
             console.log(e)
             res.status(500).send(e)
         }
     },
     async getEquipo(req, res) {
         try {
-            const data = await Equipo.find({
-                id: req.params.id,
+            const data = await Equipo.findOne({
+                where: {
+                    id: req.params.id
+                }
             })
             if (data) {
-                res.status(201).send(data)
+                res.status(201).send({
+                    'estado': true,
+                    'msg': "Equipo seleccionado!",
+                    'equipo': data
+                })
             }
-        } catch (error) {
+        } catch (e) {
             console.log(e)
             res.status(500).send(e)
         }

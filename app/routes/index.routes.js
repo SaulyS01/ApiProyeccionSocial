@@ -7,7 +7,7 @@ module.exports = app => {
   })
   app.get("/api/equipos", equipoController.getAllEquipos)
   app.post("/api/equipos", equipoController.createEquipo)
-  app.put("/api/equipos/:userId", equipoController.updateEquipo)
-  app.get("/api/equipos/:userId", equipoController.deleteEquipo)
-  app.delete("/api/equipos/:userId", equipoController.getEquipo)
+  app.put("/api/equipos/:id", equipoController.updateEquipo)
+  app.get("/api/equipos/:id", equipoController.getEquipo)
+  app.delete("/api/equipos/:id", equipoController.deleteEquipo)
 }
