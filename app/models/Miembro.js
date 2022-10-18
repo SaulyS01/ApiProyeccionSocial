@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id',
         target_key: 'idCargo'
       })
+
+      Miembro.belongsTo(models.equipos, {
+        foreignKey: 'idEquipo',
+        target_key: 'id'
+      })
     }
   }
   Miembro.init({
